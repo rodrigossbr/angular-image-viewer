@@ -1,0 +1,6 @@
+<div
+  [attr.selected]="selected"
+  (click)="onSelectImage()"
+>
+  <img *ngIf="image" [src]="image.base64Image" [alt]="image.title">
+</div>

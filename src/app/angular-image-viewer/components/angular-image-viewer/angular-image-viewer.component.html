@@ -1,0 +1,59 @@
+
+<div class="image-viewer">
+  <div class="image-selector">
+    <card-thumbnail
+      *ngFor="let img of images" [image]="img"
+      [selected]="selectedImage === img"
+      (selectImage)="selectImage($event)"
+    ></card-thumbnail>
+  </div>
+
+  <div #mainImage class="main-image"
+       (click)="clickMainImage()"
+       (mousemove)="mousemove($event)"
+       (mouseleave)="mouseleave($event)"
+  >
+    <img
+      *ngIf="selectedImage"
+      [src]="selectedImage.base64Image"
+      [alt]="selectedImage.title"
+    >
+    <div
+      class="image-crop"
+      [style.display]="showCrop ? 'flex' : 'none'"
+      [style.width]="cropSize + 'px'"
+      [style.height]="cropSize + 'px'"
+      [style.left]="cropPosX + 'px'"
+      [style.top]="cropPosY + 'px'"
+    ></div>
+  </div>
+  <div
+    class="window-image-zoom"
+    [style.display]="showWindowZoom ? 'flex' : 'none'"
+    [style.width]="windowZoomSize + 'px'"
+    [style.height]="windowZoomSize + 'px'"
+    [style.left]="windowZoomPosX + 'px'"
+    [style.top]="windowZoomPosY + 'px'"
+  >
+    <div
+      class="window-image-zoom-display"
+      [style.width]="zoomImageWidth + 'px '"
+      [style.height]="zoomImageHeight + 'px'"
+      [style.top]="zoomImagePosY + 'px'"
+      [style.left]="zoomImagePosX + 'px'"
+    >
+      <img
+        *ngIf="selectedImage"
+        [src]="selectedImage.base64Image"
+        [alt]="selectedImage.title"
+      >
+    </div>
+  </div>
+</div>
+
+<modal-expanded-image
+  [image]="expandedImage"
+  [images]="images"
+  (close)="closeModal()"
+></modal-expanded-image>
+

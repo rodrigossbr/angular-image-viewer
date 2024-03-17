@@ -1,0 +1,47 @@
+<div
+  *ngIf="image"
+  class="expanded-image-container"
+>
+  <div class="expanded-image-header">
+    <a class="modal-icon" (click)="closeModal()">
+      <img src="assets/icons/close_icon.svg" alt="close"/>
+    </a>
+  </div>
+  <div class="expanded-image-body">
+    <div class="expanded-image-body-left">
+      <a class="modal-icon" (click)="leftImage()">
+        <img src="assets/icons/left_icon.svg" alt="left image"/>
+      </a>
+    </div>
+    <div
+      *ngIf="image"
+      class="expanded-image"
+      [style.max-width]="imageWidth"
+      [style.max-height]="imageHeight"
+    >
+      <div class="expanded-image-display"
+           [style.max-width]="imageWidth"
+           [style.max-height]="imageHeight"
+           [style.scale.%]="scale"
+           [style.top.px]="clientX"
+           [style.left.px]="clientY"
+      >
+        <img
+          [src]="image.base64Image"
+          [alt]="image.title"
+        >
+      </div>
+    </div>
+    <div class="expanded-image-body-right">
+      <a class="modal-icon" (click)="rightImage()">
+        <img src="assets/icons/right_icon.svg" alt="right image"/>
+      </a>
+    </div>
+  </div>
+  <div class="expanded-image-footer">
+    <span>{{ image.title }}</span>
+    <zoom-controls
+      (zoomChange)="scaleChange($event)"
+    ></zoom-controls>
+  </div>
+</div>

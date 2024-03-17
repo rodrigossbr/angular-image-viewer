@@ -1,0 +1,41 @@
+
+:host {
+
+  .zoom-controls {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 10px;
+
+    .zoom-icon {
+      display: flex;
+      justify-content: center;
+      padding: 2px;
+      background-color: rgba(0, 0, 0, .3);
+      opacity: 0.8;
+      cursor: pointer;
+
+      img {
+        fill: white;
+        width: 30px;
+      }
+
+      &:first-child {
+        border-radius: 4px 0 0 4px;
+      }
+
+      &:last-child {
+        border-radius: 0 4px 4px 0;
+      }
+    }
+
+    .zoom-off {
+      padding: 6px;
+
+      img {
+        fill: white;
+        width: 20px;
+      }
+    }
+  }
+}

@@ -1,0 +1,54 @@
+:host {
+
+  .image-viewer {
+    display: flex;
+
+    .image-selector {
+      width: 60px;
+    }
+
+    .main-image {
+      width: 700px;
+      height: 500px;
+      background-color: darkgray;
+      cursor: zoom-in;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      .image-crop {
+        display:none;
+        justify-content: center;
+        align-items: center;
+        background: black;
+        opacity: 0.6;
+        position: absolute;
+        border: 1px solid black;
+      }
+    }
+
+    .window-image-zoom {
+      display: none;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      border: 1px solid black;
+      background-repeat: no-repeat;
+      background-color: darkgray;
+      overflow: hidden;
+
+      .window-image-zoom-display {
+        position: absolute;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+        }
+      }
+    }
+  }
+}
