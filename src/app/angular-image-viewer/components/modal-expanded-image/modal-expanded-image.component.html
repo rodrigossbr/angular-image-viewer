@@ -9,31 +9,36 @@
   </div>
   <div class="expanded-image-body">
     <div class="expanded-image-body-left">
-      <a class="modal-icon" (click)="leftImage()">
+      <a *ngIf="showNavButtons()" class="modal-icon" (click)="leftImage()">
         <img src="assets/icons/left_icon.svg" alt="left image"/>
       </a>
     </div>
     <div
       *ngIf="image"
       class="expanded-image"
-      [style.max-width]="imageWidth"
-      [style.max-height]="imageHeight"
+      [style.max-width.px]="imageWidth"
+      [style.max-height.px]="imageHeight"
     >
-      <div class="expanded-image-display"
-           [style.max-width]="imageWidth"
-           [style.max-height]="imageHeight"
+      <div #expandedImageDisplay class="expanded-image-display"
+           [style.max-width.px]="imageWidth"
+           [style.max-height.px]="imageHeight"
            [style.scale.%]="scale"
            [style.top.px]="clientX"
            [style.left.px]="clientY"
+           [style.position]="onDragMode ? 'absolute': 'initial'"
+
       >
         <img
           [src]="image.base64Image"
           [alt]="image.title"
+          (mouseup)="mouseup($event)"
+          (mousedown)="mousedown($event)"
+          (mousemove)="mousemove($event)"
         >
       </div>
     </div>
     <div class="expanded-image-body-right">
-      <a class="modal-icon" (click)="rightImage()">
+      <a *ngIf="showNavButtons()" class="modal-icon" (click)="rightImage()">
         <img src="assets/icons/right_icon.svg" alt="right image"/>
       </a>
     </div>

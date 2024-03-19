@@ -1,6 +1,6 @@
 
 <div class="image-viewer">
-  <div class="image-selector">
+  <div *ngIf="showThumbnail" class="image-selector">
     <card-thumbnail
       *ngFor="let img of images" [image]="img"
       [selected]="selectedImage === img"
@@ -9,6 +9,8 @@
   </div>
 
   <div #mainImage class="main-image"
+       [style.width.px]="imageWidth"
+       [style.height.px]="imageHeight"
        (click)="clickMainImage()"
        (mousemove)="mousemove($event)"
        (mouseleave)="mouseleave($event)"
@@ -21,26 +23,26 @@
     <div
       class="image-crop"
       [style.display]="showCrop ? 'flex' : 'none'"
-      [style.width]="cropSize + 'px'"
-      [style.height]="cropSize + 'px'"
-      [style.left]="cropPosX + 'px'"
-      [style.top]="cropPosY + 'px'"
+      [style.width.px]="cropSize"
+      [style.height.px]="cropSize"
+      [style.left.px]="cropPosX"
+      [style.top.px]="cropPosY"
     ></div>
   </div>
   <div
     class="window-image-zoom"
     [style.display]="showWindowZoom ? 'flex' : 'none'"
-    [style.width]="windowZoomSize + 'px'"
-    [style.height]="windowZoomSize + 'px'"
-    [style.left]="windowZoomPosX + 'px'"
-    [style.top]="windowZoomPosY + 'px'"
+    [style.width.px]="windowZoomSize"
+    [style.height.px]="windowZoomSize"
+    [style.left.px]="windowZoomPosX"
+    [style.top.px]="windowZoomPosY"
   >
     <div
       class="window-image-zoom-display"
-      [style.width]="zoomImageWidth + 'px '"
-      [style.height]="zoomImageHeight + 'px'"
-      [style.top]="zoomImagePosY + 'px'"
-      [style.left]="zoomImagePosX + 'px'"
+      [style.width.px]="zoomImageWidth"
+      [style.height.px]="zoomImageHeight"
+      [style.top.px]="zoomImagePosY"
+      [style.left.px]="zoomImagePosX"
     >
       <img
         *ngIf="selectedImage"
@@ -50,10 +52,4 @@
     </div>
   </div>
 </div>
-
-<modal-expanded-image
-  [image]="expandedImage"
-  [images]="images"
-  (close)="closeModal()"
-></modal-expanded-image>
 

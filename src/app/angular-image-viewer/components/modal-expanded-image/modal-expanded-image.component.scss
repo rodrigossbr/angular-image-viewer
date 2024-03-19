@@ -36,6 +36,7 @@
       height: 10%;
       min-height: 10%;
       padding: 0 80px 0 40px;
+      z-index: 2;
     }
 
     .expanded-image-body {
@@ -46,17 +47,19 @@
       max-height: 80%;
 
       .expanded-image-body-left {
+        z-index: 2;
         margin-left: 40px;
       }
 
       .expanded-image-body-right {
+        z-index: 2;
         margin-right: 40px;
       }
 
       .expanded-image {
 
         .expanded-image-display {
-
+          cursor: move;
 
           img {
             width: 100%;
@@ -71,6 +74,7 @@
       height: 10%;
       min-height: 10%;
       color: white;
+      z-index: 2;
     }
   }
 }

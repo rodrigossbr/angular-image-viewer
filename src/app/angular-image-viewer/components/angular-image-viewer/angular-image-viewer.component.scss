@@ -8,8 +8,6 @@
     }
 
     .main-image {
-      width: 700px;
-      height: 500px;
       background-color: darkgray;
       cursor: zoom-in;
 
@@ -25,7 +23,7 @@
         align-items: center;
         background: black;
         opacity: 0.6;
-        position: absolute;
+        position: fixed;
         border: 1px solid black;
       }
     }
@@ -34,11 +32,12 @@
       display: none;
       justify-content: center;
       align-items: center;
-      position: absolute;
+      position: fixed;
       border: 1px solid black;
       background-repeat: no-repeat;
       background-color: darkgray;
       overflow: hidden;
+      z-index: 2;
 
       .window-image-zoom-display {
         position: absolute;

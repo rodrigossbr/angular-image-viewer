@@ -1,5 +1,6 @@
-import {Component, EventEmitter, HostListener, Input, OnInit, Output} from '@angular/core';
+import {Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {AngularImageViewer} from "../../models/angular-image-viewer.model";
+import {ModalExpandedImageService} from "../../services/modal-expanded-image.service";
 
 @Component({
   selector: 'modal-expanded-image',
@@ -7,6 +8,10 @@ import {AngularImageViewer} from "../../models/angular-image-viewer.model";
   styleUrl: './modal-expanded-image.component.scss'
 })
 export class ModalExpandedImageComponent implements OnInit {
+
+  @ViewChild('expandedImageDisplay')
+  public expandedImageDisplay!: ElementRef;
+
 
   @Input() public image?: AngularImageViewer;
   @Input() public images: Array<AngularImageViewer> = [];
@@ -18,8 +23,8 @@ export class ModalExpandedImageComponent implements OnInit {
   public clientY: number = 0;
   public onDragMode: boolean = false;
 
-  private innerWidth: number = 0;
-  private innerHeight: number = 0;
+  protected imageWidth: number = 0;
+  protected imageHeight: number = 0;
 
   ngOnInit(): void {
     this.updateSizes();
@@ -33,14 +38,6 @@ export class ModalExpandedImageComponent implements OnInit {
   @HostListener('mousemove', ['$event'])
   onMouseMove(event: MouseEvent) {
 
-  }
-
-  get imageWidth() {
-    return `${this.innerWidth}px`;
-  }
-
-  get imageHeight() {
-    return `${this.innerHeight}px`;
   }
 
   closeModal() {
@@ -63,10 +60,47 @@ export class ModalExpandedImageComponent implements OnInit {
 
   scaleChange(scale: number) {
     this.scale = scale;
+
+    const {offsetLeft, offsetTop, offsetWidth, offsetHeight} = this.expandedImageDisplay.nativeElement;
+
+    // if (this.scale > 100) {
+    //   this.clientX = offsetLeft;
+    //   this.clientY = offsetTop;
+    //   this.onDragMode = true;
+    //   console.log('clientX, clientY', this.clientX, this.clientY)
+    //
+    // } else {
+    //   this.onDragMode = false;
+    // }
   }
 
   private updateSizes() {
-    this.innerWidth = window.innerWidth * 0.9;
-    this.innerHeight = window.innerHeight * 0.9;
+    this.imageWidth = window.innerWidth * 0.9;
+    this.imageHeight = window.innerHeight * 0.9;
+  }
+
+  mousemove(event: MouseEvent) {
+
+    if (!this.onDragMode) {
+      return;
+    }
+
+
+
+    this.clientX = event.clientX - (this.imageWidth / 2);
+    this.clientY = event.clientY - (this.imageHeight / 2);
+
+  }
+
+  mouseup(event: MouseEvent) {
+
+  }
+
+  mousedown($event: MouseEvent) {
+
+  }
+
+  showNavButtons() {
+    return this.images.length > 1;
   }
 }

@@ -4,6 +4,8 @@ import {AngularImageViewerComponent} from "./components/angular-image-viewer/ang
 import {CardThumbnailComponent} from "./components/card-thumbnail/card-thumbnail.component";
 import {ModalExpandedImageComponent} from "./components/modal-expanded-image/modal-expanded-image.component";
 import {ZoomControlsComponent} from "./components/zoom-controls/zoom-controls.component";
+import {ComponentCreatorServiceService} from "./services/component-creator-service.service";
+import {ModalExpandedImageService} from "./services/modal-expanded-image.service";
 
 
 
@@ -20,6 +22,10 @@ import {ZoomControlsComponent} from "./components/zoom-controls/zoom-controls.co
   imports: [
     CommonModule,
     NgOptimizedImage
+  ],
+  providers: [
+    ComponentCreatorServiceService,
+    ModalExpandedImageService
   ]
 })
 export class AngularImageViewerModule { }
