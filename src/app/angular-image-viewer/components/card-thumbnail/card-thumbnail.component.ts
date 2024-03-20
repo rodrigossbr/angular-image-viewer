@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {AngularImageViewer} from "../../models/angular-image-viewer.model";
+import {AngularImageViewer} from '../../models/angular-image-viewer.model';
 
 @Component({
   selector: 'card-thumbnail',

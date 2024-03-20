@@ -16,26 +16,17 @@
     <div
       *ngIf="image"
       class="expanded-image"
-      [style.max-width.px]="imageWidth"
-      [style.max-height.px]="imageHeight"
+      [style.width.px]="imageWidth"
+      [style.height.px]="imageHeight"
     >
-      <div #expandedImageDisplay class="expanded-image-display"
-           [style.max-width.px]="imageWidth"
-           [style.max-height.px]="imageHeight"
-           [style.scale.%]="scale"
-           [style.top.px]="clientX"
-           [style.left.px]="clientY"
-           [style.position]="onDragMode ? 'absolute': 'initial'"
-
-      >
-        <img
-          [src]="image.base64Image"
-          [alt]="image.title"
-          (mouseup)="mouseup($event)"
-          (mousedown)="mousedown($event)"
-          (mousemove)="mousemove($event)"
-        >
-      </div>
+      <div
+        [style.scale.%]="scale"
+        appDraggable
+        [disabled]="!isDraggable()"
+        [style.position]="isDraggable() ? 'relative' : 'static'"
+        class="expanded-image-display"
+        [style.background-image]="'url(' + image.base64Image + ')'"
+      ></div>
     </div>
     <div class="expanded-image-body-right">
       <a *ngIf="showNavButtons()" class="modal-icon" (click)="rightImage()">

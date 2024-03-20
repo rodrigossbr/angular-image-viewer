@@ -5,8 +5,8 @@ import {
   availablePerspectives,
   AvailablePerspectivesTypes
 } from '../../models/angular-image-viewer-perspective-enum';
-import {DomUtils} from "../../utils/dom-utils";
-import {ModalExpandedImageService} from "../../services/modal-expanded-image.service";
+import {DomUtils} from '../../utils/dom-utils';
+import {DialogExpandedImageService} from '../../services/dialog-expanded-image.service';
 
 
 @Component({
@@ -44,7 +44,7 @@ export class AngularImageViewerComponent {
   protected zoomImagePosX: number = 0;
   protected zoomImagePosY: number = 0;
 
-  constructor(private modalExpandedImageService: ModalExpandedImageService) { }
+  constructor(private modalExpandedImageService: DialogExpandedImageService) { }
 
   @HostListener('document:mousemove', ['$event'])
   onMouseMove(event: MouseEvent) {
@@ -94,7 +94,7 @@ export class AngularImageViewerComponent {
   }
 
   clickMainImage() {
-    this.modalExpandedImageService.addComponentToBody({
+    this.modalExpandedImageService.showDialog({
       image: this.selectedImage,
       images: this.images
     })
@@ -128,7 +128,7 @@ export class AngularImageViewerComponent {
       limitCrop,
       limitTop: (offsetTop + limitCrop),
       limitLeft: (offsetLeft + limitCrop),
-      limitRight: ((offsetLeft + (offsetWidth-2)) - limitCrop),
+      limitRight: ((offsetLeft + (offsetWidth - 2)) - limitCrop),
       limitBottom: ((offsetTop + (offsetHeight - 2)) - limitCrop)
     };
   }

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ModalExpandedImageComponent } from './modal-expanded-image.component';
+import { DialogExpandedImageComponent } from './dialog-expanded-image.component';
 
 describe('ModalExpandedImageComponent', () => {
-  let component: ModalExpandedImageComponent;
-  let fixture: ComponentFixture<ModalExpandedImageComponent>;
+  let component: DialogExpandedImageComponent;
+  let fixture: ComponentFixture<DialogExpandedImageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ModalExpandedImageComponent]
+      imports: [DialogExpandedImageComponent]
     })
     .compileComponents();
-    
-    fixture = TestBed.createComponent(ModalExpandedImageComponent);
+
+    fixture = TestBed.createComponent(DialogExpandedImageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

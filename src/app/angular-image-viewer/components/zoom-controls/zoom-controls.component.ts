@@ -8,6 +8,7 @@ import {Component, EventEmitter, Output} from '@angular/core';
 export class ZoomControlsComponent {
 
   @Output() public zoomChange = new EventEmitter<number>();
+  @Output() public zoomReset = new EventEmitter();
 
   defaultScale: number = 100;
   scale: number = 100;
@@ -25,6 +26,7 @@ export class ZoomControlsComponent {
 
   zoomOff() {
     this.updateScale(this.defaultScale);
+    this.zoomReset.emit();
   }
 
   private updateScale(scale: number) {
