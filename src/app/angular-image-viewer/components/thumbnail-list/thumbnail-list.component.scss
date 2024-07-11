@@ -1,0 +1,41 @@
+:host {
+
+  .thumbnail-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 60px;
+    height: 100%;
+
+    a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 48px;
+      height: 21px;
+      background-color: lightgray;
+
+      &:first-child {
+        border-bottom-left-radius: 8px;
+        border-bottom-right-radius: 8px;
+      }
+
+      &:last-child {
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+      }
+
+      img {
+        width: 2.5vmin;
+        height: 2.5vmin;
+      }
+    }
+
+    .thumbnail-selector {
+      height: calc(100% - 42px);
+      overflow-y: scroll;
+      scrollbar-width: none;
+    }
+  }
+}

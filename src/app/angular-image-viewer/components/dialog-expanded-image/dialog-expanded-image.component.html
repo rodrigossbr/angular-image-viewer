@@ -3,7 +3,7 @@
   class="expanded-image-container"
 >
   <div class="expanded-image-header">
-    <a class="modal-icon" (click)="closeModal()">
+    <a class="modal-icon" (click)="closeDialog()">
       <img src="assets/icons/close_icon.svg" alt="close"/>
     </a>
   </div>
@@ -25,7 +25,7 @@
         [disabled]="!isDraggable()"
         [style.position]="isDraggable() ? 'relative' : 'static'"
         class="expanded-image-display"
-        [style.background-image]="'url(' + image.base64Image + ')'"
+        [style.background-image]="'url(' + image.imageSrc + ')'"
       ></div>
     </div>
     <div class="expanded-image-body-right">

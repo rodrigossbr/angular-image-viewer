@@ -7,6 +7,7 @@ import {ZoomControlsComponent} from './components/zoom-controls/zoom-controls.co
 import {ComponentCreatorService} from './services/component-creator.service';
 import {DialogExpandedImageService} from './services/dialog-expanded-image.service';
 import {DraggableDirective} from "./directives/draggable.directive";
+import {ThumbnailListComponent} from "./components/thumbnail-list/thumbnail-list.component";
 
 
 
@@ -16,7 +17,8 @@ import {DraggableDirective} from "./directives/draggable.directive";
     CardThumbnailComponent,
     DialogExpandedImageComponent,
     ZoomControlsComponent,
-    DraggableDirective
+    DraggableDirective,
+    ThumbnailListComponent
   ],
   exports: [
     AngularImageViewerComponent,

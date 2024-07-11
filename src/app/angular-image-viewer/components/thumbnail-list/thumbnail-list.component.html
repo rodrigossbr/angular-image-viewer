@@ -1,0 +1,28 @@
+<div class="thumbnail-list">
+  <a
+    *ngIf="showButtons()"
+    type="button"
+    (click)="back()"
+  >
+    <img ngSrc="assets/icons/top_icon.svg" alt="top image" height="16" width="16"/>
+  </a>
+  <div
+    #thumbnailsSelector
+    class="thumbnail-selector"
+  >
+    <div #thumbnails *ngFor="let img of images">
+      <card-thumbnail
+        [image]="img"
+        [selected]="selectedImage === img"
+        (selectImage)="selectImage($event)"
+      ></card-thumbnail>
+    </div>
+  </div>
+  <a
+    *ngIf="showButtons()"
+    type="button"
+    (click)="next()"
+  >
+    <img ngSrc="assets/icons/bottom_icon.svg" alt="bottom image" height="16" width="16"/>
+  </a>
+</div>

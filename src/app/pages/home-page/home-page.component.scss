@@ -1,11 +1,13 @@
+:host {
 
+  .image-viewer-options {
+    display: flex;
 
-.middle-component {
-  display: flex;
-  justify-content: center;
-}
+    margin: 10px 0;
+  }
 
-.teste {
-  position: fixed;
-  cursor: move;
+  .middle-component {
+    display: flex;
+    justify-content: center;
+  }
 }

@@ -4,13 +4,13 @@
   height: 48px;
 
   div {
-    border: 1px solid black;
+    border: 1px solid lightgray;
     border-radius: 5px;
     margin: 2px;
     padding: 2px;
 
     &[selected=true] {
-      border: 2px solid crimson;
+      border: 2px solid black;
     }
 
     img {

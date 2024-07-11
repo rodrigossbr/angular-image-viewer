@@ -1,4 +1,4 @@
-import {Component, ElementRef, HostListener, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, HostListener, Input, ViewChild} from '@angular/core';
 import {AngularImageViewer} from '../../models/angular-image-viewer.model';
 import {
   AngularImageViewerPerspective,
@@ -7,6 +7,7 @@ import {
 } from '../../models/angular-image-viewer-perspective-enum';
 import {DomUtils} from '../../utils/dom-utils';
 import {DialogExpandedImageService} from '../../services/dialog-expanded-image.service';
+import {ThumbnailTypeEnum} from "../../models/thumbnail-type.enum";
 
 
 @Component({
@@ -15,20 +16,22 @@ import {DialogExpandedImageService} from '../../services/dialog-expanded-image.s
   styleUrl: './angular-image-viewer.component.scss'
 })
 export class AngularImageViewerComponent {
-
   @ViewChild('mainImage')
   mainImage!: ElementRef;
 
-  @Input() public zoomScale: number = 3;
-  @Input() public perspective: AvailablePerspectivesTypes = 'SMALL';
-  @Input() public showThumbnail: boolean = true;
+  protected THUMBNAIL_LEFT = ThumbnailTypeEnum.LEFT;
+  protected THUMBNAIL_RIGHT = ThumbnailTypeEnum.RIGHT;
 
+  @Input() public thumbnail: ThumbnailTypeEnum | undefined;
+
+  private _perspective: AvailablePerspectivesTypes = 'LARGE';
   private _images: Array<AngularImageViewer> = [];
   protected selectedImage!: AngularImageViewer;
 
   protected imageWidth!: number;
   protected imageHeight!: number;
 
+  protected zoomScale: number = 3;
   protected showCrop: boolean = false;
   protected cropSize: number = 150;
   protected cropPosX: number = 0;
@@ -47,7 +50,7 @@ export class AngularImageViewerComponent {
   constructor(private modalExpandedImageService: DialogExpandedImageService) { }
 
   @HostListener('document:mousemove', ['$event'])
-  onMouseMove(event: MouseEvent) {
+  public onMouseMove(event: MouseEvent) {
     if (!this.showCrop) {
       return;
     }
@@ -59,7 +62,6 @@ export class AngularImageViewerComponent {
   @Input()
   public set images(images: Array<AngularImageViewer>) {
     this._images = images;
-
     this._images.length && this.selectImage(this.images[0]);
   }
 
@@ -67,17 +69,31 @@ export class AngularImageViewerComponent {
     return this._images;
   }
 
-  mousemove(event: MouseEvent) {
+  @Input()
+  public set perspective(value: AvailablePerspectivesTypes) {
+    this._perspective = value;
+    this.updatePerspective();
+  }
+
+  public get perspective(): AvailablePerspectivesTypes {
+    return this._perspective;
+  }
+
+  protected mousemove(event: MouseEvent) {
     this.showCrop = true;
     this.showWindowZoom = true;
   }
 
-  mouseleave(event: MouseEvent) {
+  protected mouseleave(event: MouseEvent) {
     this.showCrop = false;
     this.showWindowZoom = false;
   }
 
-  selectImage(image: AngularImageViewer) {
+  protected updatePerspective() {
+    this.selectedImage && this.selectImage(this.selectedImage);
+  }
+
+  protected selectImage(image: AngularImageViewer) {
 
     const {cropSize, width, height} = this.getPerspective();
 
@@ -93,7 +109,7 @@ export class AngularImageViewerComponent {
     }, 500);
   }
 
-  clickMainImage() {
+  protected clickMainImage() {
     this.modalExpandedImageService.showDialog({
       image: this.selectedImage,
       images: this.images
@@ -135,8 +151,8 @@ export class AngularImageViewerComponent {
 
   private setZoomBackPosition() {
     const {offsetLeft, offsetTop} = this.getOffsets();
-    this.zoomImagePosX = -((this.cropPosX * this.zoomScale) - (offsetLeft * 3));
-    this.zoomImagePosY = -((this.cropPosY * this.zoomScale) - (offsetTop * 3));
+    this.zoomImagePosX = -((this.cropPosX * this.zoomScale) - (offsetLeft * this.zoomScale));
+    this.zoomImagePosY = -((this.cropPosY * this.zoomScale) - (offsetTop * this.zoomScale));
   }
 
 

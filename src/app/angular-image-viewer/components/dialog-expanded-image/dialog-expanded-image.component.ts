@@ -1,5 +1,6 @@
-import {Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output, ViewChild} from '@angular/core';
+import {Component, EventEmitter, HostListener, Input, OnInit, Output} from '@angular/core';
 import {AngularImageViewer} from '../../models/angular-image-viewer.model';
+import {DialogExpandedImageService} from "../../services/dialog-expanded-image.service";
 
 @Component({
   selector: 'dialog-expanded-image',
@@ -18,6 +19,9 @@ export class DialogExpandedImageComponent implements OnInit {
   protected imageWidth: number = 0;
   protected imageHeight: number = 0;
 
+  constructor(private service: DialogExpandedImageService) {
+  }
+
   ngOnInit(): void {
     this.updateSizes();
   }
@@ -27,8 +31,8 @@ export class DialogExpandedImageComponent implements OnInit {
     this.updateSizes();
   }
 
-  closeModal() {
-    this.image = undefined;
+  closeDialog() {
+    this.service.closeDialog();
   }
 
   leftImage() {

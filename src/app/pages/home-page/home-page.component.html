@@ -1,13 +1,29 @@
 <p>Image viewer home</p>
 
-<angular-image-viewer
-  [images]="images"
-  [showThumbnail]="true"
-></angular-image-viewer>
+<div class="image-viewer-options">
 
+  <div class="form-input">
+    <label for="perspective">Zoom scale:</label>
+    <select name="perspective" id="perspective" [(ngModel)]="perspective">
+      <option value="SMALL">Small</option>
+      <option value="MEDIUM">Medium</option>
+      <option value="LARGE">Large</option>
+    </select>
+  </div>
+  <div class="form-input">
+    <label for="thumbnail">Thumbnail:</label>
+    <select name="perspective" id="thumbnail" [(ngModel)]="thumbnail">
+      <option [value]="THUMBNAIL_LEFT">LEFT</option>
+      <option [value]="THUMBNAIL_RIGHT">RIGHT</option>
+    </select>
+  </div>
 
-<div class="teste" appDraggable>
-
-  <h1>Teste</h1>
 
 </div>
+
+<angular-image-viewer
+  [images]="images"
+  [perspective]="perspective"
+  [thumbnail]="thumbnail"
+></angular-image-viewer>
+

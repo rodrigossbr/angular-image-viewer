@@ -2,5 +2,5 @@
   [attr.selected]="selected"
   (click)="onSelectImage()"
 >
-  <img *ngIf="image" [src]="image.base64Image" [alt]="image.title">
+  <img *ngIf="image" [src]="image.imageSrc" [alt]="image.title">
 </div>

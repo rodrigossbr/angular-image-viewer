@@ -14,4 +14,8 @@ export class DialogExpandedImageService {
   showDialog(params: { image: AngularImageViewer, images: Array<AngularImageViewer> }) {
     this.componentRef = this.dynamicComponentService.appendComponentToBody(DialogExpandedImageComponent, params);
   }
+
+  closeDialog() {
+    this.dynamicComponentService.removeComponentFromBody(this.componentRef);
+  }
 }

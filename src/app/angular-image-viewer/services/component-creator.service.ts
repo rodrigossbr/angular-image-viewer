@@ -29,4 +29,8 @@ export class ComponentCreatorService {
 
     return componentRef;
   }
+
+  removeComponentFromBody<T>(componentRef: ComponentRef<T>) {
+    document.body.removeChild((componentRef.hostView as EmbeddedViewRef<any>).rootNodes[0]);
+  }
 }

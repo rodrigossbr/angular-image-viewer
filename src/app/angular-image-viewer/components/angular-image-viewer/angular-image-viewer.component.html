@@ -1,13 +1,13 @@
 
-<div class="image-viewer">
-  <div *ngIf="showThumbnail" class="image-selector">
-    <card-thumbnail
-      *ngFor="let img of images" [image]="img"
-      [selected]="selectedImage === img"
-      (selectImage)="selectImage($event)"
-    ></card-thumbnail>
-  </div>
-
+<div
+  class="image-viewer"
+  [style.max-height.px]="imageHeight"
+>
+  <app-thumbnail-list
+    *ngIf="thumbnail == THUMBNAIL_LEFT"
+    [images]="images"
+    (onSelectImage)="selectImage($event)"
+  ></app-thumbnail-list>
   <div #mainImage class="main-image"
        [style.width.px]="imageWidth"
        [style.height.px]="imageHeight"
@@ -17,7 +17,7 @@
   >
     <img
       *ngIf="selectedImage"
-      [src]="selectedImage.base64Image"
+      [src]="selectedImage.imageSrc"
       [alt]="selectedImage.title"
     >
     <div
@@ -46,10 +46,14 @@
     >
       <img
         *ngIf="selectedImage"
-        [src]="selectedImage.base64Image"
+        [src]="selectedImage.imageSrc"
         [alt]="selectedImage.title"
       >
     </div>
   </div>
+  <app-thumbnail-list
+    *ngIf="thumbnail == THUMBNAIL_RIGHT"
+    [images]="images"
+    (onSelectImage)="selectImage($event)"
+  ></app-thumbnail-list>
 </div>
-
